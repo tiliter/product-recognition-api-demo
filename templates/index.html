@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='tiliter-favicon.ico') }}">
+    <title>Tiliter Recognition Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="/static/tiliter_logo.png" alt="Tiliter Logo" class="logo">
+        </div>
+
+        <div id="drop-area">
+            <img id="dropped-image" src="" alt="Dropped Image" style="display: none;">
+            <span id="drop-text">Drop image here</span>
+        </div>
+
+        <div class="split-container">
+            <div class="column">
+                <h2 class="subheading">Recognized Items:</h2>
+                <ul id="recognized-items"></ul>
+            </div>
+            <div class="column">
+                <h2 class="subheading">Bag Detection:</h2>
+                <p id="bag-detected"></p>
+            </div>
+        </div>
+        <h2 class="subheading" id="api-response-time">API Response Time:</h2>
+        <p id="api-response-time-value"></p>
+    </div>
+    <script src="static/js/app.js"></script>
+
+</body>
+</html>

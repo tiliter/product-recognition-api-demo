@@ -1,0 +1,158 @@
+body {
+    min-height: 100%;
+    background-color: #0c152a;
+    font-family: 'Circular std', sans-serif;
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px;
+    background-color: #0c152a;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.logo {
+    max-height: 50px;
+    margin-right: 20px;
+}
+
+.heading {
+    color: #0099ff;
+}
+
+#drop-area {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #0099ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 20px 0;
+    background-color: #0c152a;
+}
+
+#dropped-image {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#drop-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #0099ff;
+}
+
+.subheading {
+    color: #0099ff;
+    margin-bottom: 20px;
+}
+
+#recognized-items li {
+    margin-bottom: 10px;
+    color: #ffffff;
+    list-style: decimal inside;
+    padding-left: 20px;
+}
+
+#bag-detected {
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        max-height: 30px;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .subheading {
+        text-align: center;
+    }
+
+    #drop-area {
+        height: 150px;
+    }
+}
+
+/* New styles for split container */
+#split-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.recognized-container, .bag-container {
+    width: calc(50% - 10px);
+    padding: 20px;
+    border: 2px solid #0099ff;
+    border-radius: 10px;
+}
+
+.recognized-container {
+    margin-right: 10px;
+}
+
+.bag-container {
+    margin-left: 10px;
+}
+
+.recognized-container h2.subheading, .bag-container h2.subheading {
+    margin-top: 0;
+}
+
+#rights-note {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  margin-top: 50px;
+  padding: 10px;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    #split-container {
+        flex-direction: column;
+    }
+
+    .recognized-container, .bag-container {
+        width: 100%;
+        margin-top: 20px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .recognized-container {
+        margin-bottom: 10px;
+    }
+}
