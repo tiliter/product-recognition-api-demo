@@ -69,7 +69,7 @@ body {
     margin-bottom: 20px;
 }
 
-#recognized-items li {
+#recognised-products li {
     margin-bottom: 10px;
     color: #ffffff;
     list-style: decimal inside;
@@ -106,14 +106,14 @@ body {
     margin-top: 50px;
 }
 
-.recognized-container, .bag-container {
+.recognised-container, .bag-container {
     width: calc(50% - 10px);
     padding: 20px;
     border: 2px solid #0099ff;
     border-radius: 10px;
 }
 
-.recognized-container {
+.recognised-container {
     margin-right: 10px;
 }
 
@@ -121,7 +121,7 @@ body {
     margin-left: 10px;
 }
 
-.recognized-container h2.subheading, .bag-container h2.subheading {
+.recognised-container h2.subheading, .bag-container h2.subheading {
     margin-top: 0;
 }
 
@@ -145,14 +145,14 @@ body {
         flex-direction: column;
     }
 
-    .recognized-container, .bag-container {
+    .recognised-container, .bag-container {
         width: 100%;
         margin-top: 20px;
         margin-right: 0;
         margin-left: 0;
     }
 
-    .recognized-container {
+    .recognised-container {
         margin-bottom: 10px;
     }
 }

@@ -2,6 +2,8 @@
 
 This repository contains a simple web application that demonstrates the functionality of the Tiliter recognition API. The application allows users to drag and drop an image onto the web page, and the application will recognize items in the image and display the recognition results.
 
+![How it works](how-it-works.png)
+
 ## Prerequisites
 
 - Python 3.6 or later

@@ -1,7 +1,7 @@
 const dropArea = document.getElementById('drop-area');
 const droppedImage = document.getElementById('dropped-image');
 const dropText = document.getElementById('drop-text');
-const recognizedItems = document.getElementById('recognized-items');
+const recognisedProducts = document.getElementById('recognised-products');
 const bagDetected = document.getElementById('bag-detected');
 
 // Prevent the default behavior of opening the dropped file in a new tab
@@ -51,25 +51,25 @@ dropArea.addEventListener('drop', (event) => {
 
         // Send the image data to the server for recognition
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', '/predict');
+        xhr.open('POST', '/recognition');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
             if (xhr.status === 200) {
-                // Display the recognized items
+                // Display the Recognised items
                 const response = JSON.parse(xhr.responseText);
-                const items = response.items;
-                recognizedItems.innerHTML = '';
+                const products = response.recognised_products;
+                recognisedProducts.innerHTML = '';
 
-                if (items.length > 0) {
-                    for (let i = 0; i < items.length; i++) {
+                if (products.length > 0) {
+                    for (let i = 0; i < products.length; i++) {
                         const item = document.createElement('li');
-                        item.textContent = items[i];
-                        recognizedItems.appendChild(item);
+                        item.textContent = products[i];
+                        recognisedProducts.appendChild(item);
                     }
                 } else {
                     const item = document.createElement('li');
-                    item.textContent = 'Unrecognized';
-                    recognizedItems.appendChild(item);
+                    item.textContent = 'Unrecognised';
+                    recognisedProducts.appendChild(item);
                 }
 
                 // Display the API response time
