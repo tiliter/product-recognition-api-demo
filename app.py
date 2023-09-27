@@ -46,14 +46,15 @@ def recognition():
     product_recognition = response.json()["product_recognition"]
     options = product_recognition["options"]
     if product_recognition["result_type"] != "recognised":
-        return jsonify({"item_name": "UnRrecognised", "api_response_time": api_response_time})
+        return jsonify({"item_name": "Unrecognised", "api_response_time": api_response_time})
 
     # Map the product ids to their names using the mapping dictionary
     products = [PRODUCT_MAPPING.get(option["product_id"], "Unknown") for option in options]
-
+    scores = [option["score"] for option in options]
     bag_recognition = response.json()["bag_recognition"]
     present = bag_recognition.get("present", False)
-    return jsonify({"recognised_products": products, "bag_recognition": present, "api_response_time": api_response_time})
+    return jsonify({"recognised_products": products, "scores": scores, "bag_recognition": present,
+                    "api_response_time": api_response_time})
 
 
 @app.route("/timing_test", methods=["GET"])

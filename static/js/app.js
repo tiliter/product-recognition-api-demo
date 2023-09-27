@@ -63,7 +63,7 @@ dropArea.addEventListener('drop', (event) => {
                 if (products.length > 0) {
                     for (let i = 0; i < products.length; i++) {
                         const item = document.createElement('li');
-                        item.textContent = products[i];
+                        item.textContent = products[i] + ' (' + Math.round(response.scores[i]*100) + '%)';
                         recognisedProducts.appendChild(item);
                     }
                 } else {

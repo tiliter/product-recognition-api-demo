@@ -37,7 +37,9 @@ def prepare_api_request_data(image_data: str):
     current_datetime = datetime.now()
     data = {
         "device_id": "demo",
-        "images": [{"image": image_data, "camera_type": "generic", "capture_time": current_datetime.isoformat()}],
+        "images": [{"image": image_data, "camera_type": "generic", "capture_time": current_datetime.isoformat(), }],
+        "include_scores": True,
+        "score_threshold": None,
     }
     return data
 
