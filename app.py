@@ -39,22 +39,14 @@ def recognition():
     # Check the response status code
     if response.status_code != 200:
         return (
-            jsonify({"error": f"{response.status_code}:API request failed", "api_response_time": api_response_time}),
+            jsonify({"error": f"{response.status_code}: API request failed", "api_response_time": api_response_time}),
             500,
         )
 
-    product_recognition = response.json()["product_recognition"]
-    options = product_recognition["options"]
-    if product_recognition["result_type"] != "recognised":
-        return jsonify({"item_name": "Unrecognised", "api_response_time": api_response_time})
-
-    # Map the product ids to their names using the mapping dictionary
-    products = [PRODUCT_MAPPING.get(option["product_id"], "Unknown") for option in options]
-    scores = [option["score"] for option in options]
-    bag_recognition = response.json()["bag_recognition"]
-    present = bag_recognition.get("present", False)
-    return jsonify({"recognised_products": products, "scores": scores, "bag_recognition": present,
-                    "api_response_time": api_response_time})
+    # If the status code is 200, just pass the JSON response through
+    response_json = response.json()
+    response_json["api_response_time"] = api_response_time  # add the API response time to the response JSON
+    return jsonify({**response_json, 'product_mapping': PRODUCT_MAPPING})
 
 
 @app.route("/timing_test", methods=["GET"])

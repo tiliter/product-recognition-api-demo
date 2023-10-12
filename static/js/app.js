@@ -55,41 +55,54 @@ dropArea.addEventListener('drop', (event) => {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = () => {
             if (xhr.status === 200) {
-                // Display the Recognised items
                 const response = JSON.parse(xhr.responseText);
-                const products = response.recognised_products;
+                const resultType = response.product_recognition.result_type;
+                const resultTypeContainer = document.getElementById('result-type');
+                const productMapping = response.product_mapping;  // New line
+
+                // Display the Result Type
+                resultTypeContainer.textContent = mapResultType(resultType);
+
+                // Clear the recognised products list
                 recognisedProducts.innerHTML = '';
 
-                if (products.length > 0) {
+                // Only display products if the result type is "recognised"
+                if (resultType === "recognised") {
+                    const products = response.product_recognition.options;
+
                     for (let i = 0; i < products.length; i++) {
                         const item = document.createElement('li');
-                        item.textContent = products[i] + ' (' + Math.round(response.scores[i]*100) + '%)';
+                        const productName = productMapping[products[i].product_id] || 'Unknown';  // Updated line
+                        item.textContent = productName + ' (' + Math.round(products[i].score * 100) + '%)';
                         recognisedProducts.appendChild(item);
                     }
-                } else {
-                    const item = document.createElement('li');
-                    item.textContent = 'Unrecognised';
-                    recognisedProducts.appendChild(item);
                 }
 
+                // Display the bag detection result
+                const bag = response.bag_recognition.present;
+                bagDetected.textContent = bag ? "Bag detected" : "No bag detected";
+
                 // Display the API response time
-                const apiResponseTime = response.api_response_time;
                 const apiResponseTimeElement = document.getElementById("api-response-time-value");
                 apiResponseTimeElement.style.display = 'block';
-                apiResponseTimeElement.textContent = `${apiResponseTime} seconds`;
+                apiResponseTimeElement.textContent = `${response.api_response_time} seconds`;
 
             } else {
                 alert('Error: ' + xhr.status);
             }
-
-            // Display the bag detection result
-            const bag = JSON.parse(xhr.responseText)["bag_recognition"];
-            if (bag) {
-                bagDetected.textContent = "Bag detected";
-            } else {
-                bagDetected.textContent = "No bag detected";
-            }
         };
+
+        function mapResultType(resultType) {
+            const resultTypeMapping = {
+                recognised: "Recognised",
+                recognised_barcoded_product: "Recognised Barcoded Product",
+                no_known_product: "No Known Product",
+                obstructed: "Obstructed",
+                background: "Background"
+            };
+
+            return resultTypeMapping[resultType] || "Unknown Result Type";
+        }
 
         xhr.send(JSON.stringify({image_data: image_data}));
     };
